@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'perguntas.dart'; // Importe o arquivo perguntas.dart
+import 'perguntas.dart';
 
 void main() {
   runApp(const Quiz());
@@ -33,13 +33,14 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<Question> questions = []; // Lista de perguntas
-  int currentQuestionIndex = 0; // Índice da pergunta atual
+  List<Question> questions = [];
+  int currentQuestionIndex = 0;
+  int correctAnswers = 0;
+  int incorrectAnswers = 0;
 
   @override
   void initState() {
     super.initState();
-    // Aqui você faz a chamada para buscar as perguntas da API
     fetchTrueOrFalseQuestions().then((data) {
       setState(() {
         questions = data;
@@ -47,14 +48,21 @@ class _QuizPageState extends State<QuizPage> {
     });
   }
 
-  // Função para avançar para a próxima pergunta
-  void nextQuestion() {
+  void nextQuestion(bool userAnswer) {
+    final Question currentQuestion = questions[currentQuestionIndex];
     setState(() {
+      if (userAnswer == currentQuestion.correctAnswer) {
+        correctAnswers++;
+      } else {
+        incorrectAnswers++;
+      }
+
       if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
       } else {
-        // Se chegou ao final das perguntas, você pode fazer algo, como reiniciar o quiz.
         currentQuestionIndex = 0;
+        correctAnswers = 0;
+        incorrectAnswers = 0;
       }
     });
   }
@@ -91,8 +99,7 @@ class _QuizPageState extends State<QuizPage> {
                 backgroundColor: Colors.green,
               ),
               onPressed: () {
-                // Lógica para verificar a resposta verdadeira e avançar para a próxima pergunta
-                nextQuestion();
+                nextQuestion(true);
               },
               child: const Text(
                 'Verdadeiro',
@@ -112,8 +119,7 @@ class _QuizPageState extends State<QuizPage> {
                 backgroundColor: Colors.red,
               ),
               onPressed: () {
-                // Lógica para verificar a resposta falsa e avançar para a próxima pergunta
-                nextQuestion();
+                nextQuestion(false);
               },
               child: const Text(
                 'Falso',
@@ -125,17 +131,33 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.all(10.0),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
                 Icons.check,
                 color: Colors.green,
               ),
+              Text(
+                correctAnswers.toString(),
+                style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 20.0,
+                ),
+              ),
+              SizedBox(width: 20.0),
               Icon(
                 Icons.close,
                 color: Colors.red,
+              ),
+              Text(
+                incorrectAnswers.toString(),
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 20.0,
+                ),
               ),
             ],
           ),
@@ -144,4 +166,3 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 }
-
