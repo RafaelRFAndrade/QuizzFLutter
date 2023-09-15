@@ -1,16 +1,8 @@
-# quizz
+# Quizz Aleatório de 10 perguntas
 
-A new Flutter project.
+Este é um aplicativo Flutter simples que apresenta perguntas de verdadeiro ou falso. O objetivo deste aplicativo é demonstrar como criar uma interface de usuário básica em Flutter e como gerenciar perguntas e respostas. As perguntas vem de uma API de perguntas com o filtro de somente as de resposta booleana.
 
-## Getting Started
+## Exemplo
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![p1](https://github.com/RafaelRFAndrade/QuizzFLutter/assets/110788109/493fe1ed-eca5-468f-a5c6-a82c378c258a)
