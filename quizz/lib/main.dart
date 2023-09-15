@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'perguntas.dart';
 
@@ -102,7 +104,7 @@ class _QuizPageState extends State<QuizPage> {
                 nextQuestion(true);
               },
               child: const Text(
-                'Verdadeiro',
+                'True',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
@@ -122,7 +124,7 @@ class _QuizPageState extends State<QuizPage> {
                 nextQuestion(false);
               },
               child: const Text(
-                'Falso',
+                'False',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
@@ -136,25 +138,25 @@ class _QuizPageState extends State<QuizPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
+              const Icon(
                 Icons.check,
                 color: Colors.green,
               ),
               Text(
                 correctAnswers.toString(),
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.green,
                   fontSize: 20.0,
                 ),
               ),
-              SizedBox(width: 20.0),
-              Icon(
+              const SizedBox(width: 20.0),
+              const Icon(
                 Icons.close,
                 color: Colors.red,
               ),
               Text(
                 incorrectAnswers.toString(),
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.red,
                   fontSize: 20.0,
                 ),
